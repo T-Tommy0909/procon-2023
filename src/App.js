@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import styled from "styled-components";
+import { TextField } from "./components/TextField";
 
 function App() {
   const [data, setData] = React.useState();
@@ -52,11 +53,11 @@ function App() {
     <div>
       <div>チーム牛丼</div>
       <div>{url}</div>
-      <Input
+      <TextField
         id="match_id"
         type="number"
         value={matchId}
-        onChange={(v) => setMatchId(v.target.value)}
+        onChange={setMatchId}
         placeholder="試合IDを入力してください"
       />
       {matchId && <button onClick={GetData}>データを取得</button>}
