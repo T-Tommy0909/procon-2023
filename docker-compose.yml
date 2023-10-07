@@ -1,0 +1,13 @@
+version: "3.8"
+
+services:
+  front:
+    build:
+      context: ./frontend
+      target: deps
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app:delegated
+      - /app/node_modules
+    command: "yarn start"

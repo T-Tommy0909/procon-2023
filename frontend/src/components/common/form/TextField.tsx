@@ -1,14 +1,30 @@
-import React from "react";
+import { useRef } from "react";
 import styled from "styled-components";
 
-export const TextField = ({ value, onChange, placeholder, id, type }) => {
+interface Props {
+  id?: string;
+  value: string;
+  type: string;
+  onChange?: (value: string) => void;
+  placeholder?: string;
+}
+
+export const TextField: React.FC<Props> = ({
+  id,
+  value,
+  type,
+  onChange,
+  placeholder,
+}) => {
+  const inputRef = useRef<HTMLInputElement>(null);
+
   return (
     <Container>
       <Input
-        id={id}
-        type={type}
         value={value}
+        type={type}
         onChange={(e) => onChange?.(e.target.value)}
+        ref={inputRef}
       />
       {placeholder != null && !value && (
         <Placeholder>{placeholder}</Placeholder>
@@ -19,28 +35,15 @@ export const TextField = ({ value, onChange, placeholder, id, type }) => {
 
 const Container = styled.div`
   position: relative;
-  border-radius: 6px;
-  background: #e2e5e7;
-  color: #445053;
 `;
 
 const Input = styled.input`
   display: block;
-
-  width: 100%;
+  width: 48rem;
   padding: 0.5rem 0.75rem;
-
-  &:focus {
-    background: #fff;
-  }
-  &:disabled,
-  &:read-only {
-    color: #727f8b;
-  }
-  ::-ms-reveal,
-  ::-ms-clear {
-    display: none;
-  }
+  border-radius: 6px;
+  background: #f2f1f1;
+  color: #3f3f3f;
 `;
 
 const Placeholder = styled.span`
@@ -48,6 +51,5 @@ const Placeholder = styled.span`
   top: 0.5rem;
   left: 0.75rem;
   pointer-events: none;
-
-  color: #727f8b;
+  color: #3f3f3f;
 `;
