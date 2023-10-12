@@ -2,7 +2,7 @@ export interface MatchState {
   id: number;
   turn: number;
   board: {
-    walls: number;
+    walls: number[][];
     territories: number[][];
     width: number;
     height: number;

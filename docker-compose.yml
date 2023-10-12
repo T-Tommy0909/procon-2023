@@ -10,4 +10,5 @@ services:
     volumes:
       - ./frontend:/app:delegated
       - /app/node_modules
-    command: "yarn start"
+    command: >
+      sh -c 'yarn && yarn start'
